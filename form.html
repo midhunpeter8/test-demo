@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <form action="" novalidate id="form">
+        <p>
+            <label for="">Email</label>
+            <input type="email" name="" id="email" required>
+            <span id="emailerror" style="color: red;"></span>
+        </p>
+        <p>
+            <label for="">Name</label>
+            <input type="text" name="" id="name" required minlength="5">
+            <span id="nameerror" style="color: red;"></span>
+        </p>
+        <p>
+            <label for="">Password</label>
+            <input type="password" name="" id="password" required minlength="8">
+            <span id="passworderror" style="color: red;"></span>
+        </p>
+        <p>
+            <input type="submit" >
+        </p>
+    </form>
+    <script src="form.js"></script>
+</body>
+</html>
+
+
+
+var formm = document.querySelector('#form')
+var form = {
+    email: {
+        element: document.querySelector('#email'),
+        errorElement: document.querySelector('#emailerror'),
+        isValid:function(){
+            if(this.element.validity.valid == false){
+                this.errorElement.innerText = 'Invalid'
+            }
+            else{
+                this.errorElement.innerText = ''
+            }
+            return this.element.validity.valid
+        }
+    },
+    name: {
+        element: document.querySelector('#name'),
+        errorElement: document.querySelector('#nameerror'),
+        isValid:function(){
+            if(this.element.validity.valid == false){
+                this.errorElement.innerText = 'Invalid'
+            }
+            else{
+                this.errorElement.innerText = ''
+            }
+            return this.element.validity.valid
+        }
+    },
+
+    password: {
+        element: document.querySelector('#password'),
+        errorElement: document.querySelector('#passworderror'),
+        isValid:function(){
+            if(this.element.validity.valid == false){
+                this.errorElement.innerText = 'Invalid'
+            }
+            else{
+                this.errorElement.innerText = ''
+            }
+            return this.element.validity.valid
+        }
+    }
+
+}
+formm.addEventListener('submit',function(e){
+    e.preventDefault()
+    for(fields in form){
+        console.log(fields)
+        form[fields].isValid()
+    }
+})
